@@ -1,0 +1,35 @@
+ID;description;s4_material_type;product_group;unit_value_usd;bom_level;base_uom
+HU-IVI-12;Infotainment Head Unit 12.3in;FERT;Infotainment;780.0;0;EA
+HU-IVI-15;Infotainment Head Unit 15.6in;FERT;Infotainment;1150.0;0;EA
+DCU-CKPT;Digital Cockpit Domain Controller;FERT;Cockpit;1450.0;0;EA
+AMP-16CH;16-Channel Premium Audio Amplifier;FERT;Audio;320.0;0;EA
+TCU-5G;5G Telematics Control Unit;FERT;Connectivity;260.0;0;EA
+PCBA-HU-MAIN;Head Unit Main Board PCBA;HALB;PCBA;310.0;1;EA
+PCBA-DCU;Domain Controller PCBA;HALB;PCBA;520.0;1;EA
+PCBA-AMP;Amplifier PCBA;HALB;PCBA;110.0;1;EA
+PCBA-TCU;Telematics PCBA;HALB;PCBA;120.0;1;EA
+SOM-A78;Compute System-on-Module (A78 SoC);HALB;Module;190.0;2;EA
+MOD-5G;5G Connectivity Module;HALB;Module;85.0;2;EA
+SOC-A78;Automotive SoC A78 (AEC-Q100);ROH;Semiconductor;95.0;3;EA
+DRAM-LP5-8G;LPDDR5 8GB DRAM;ROH;Semiconductor;14.0;3;EA
+EMMC-64;eMMC 64GB;ROH;Semiconductor;9.0;3;EA
+PMIC-01;Power Management IC;ROH;Semiconductor;3.2;2;EA
+ETH-SW;Automotive Ethernet Switch;ROH;Semiconductor;11.0;2;EA
+DSP-AUD;Audio DSP;ROH;Semiconductor;16.0;2;EA
+AMP-IC;Class-D Amplifier IC (4ch);ROH;Semiconductor;4.5;2;EA
+MODEM-5G;5G Modem Chipset;ROH;Semiconductor;48.0;3;EA
+RF-FE;RF Front-End Module;ROH;Semiconductor;9.0;3;EA
+PCB-HU;Bare PCB Head Unit 12L HDI;ROH;PCB;18.0;2;EA
+PCB-DCU;Bare PCB DCU 14L HDI;ROH;PCB;26.0;2;EA
+PCB-AMP;Bare PCB Amplifier 6L;ROH;PCB;8.0;2;EA
+PCB-TCU;Bare PCB TCU 8L;ROH;PCB;7.0;2;EA
+DISP-12;Display Module 12.3in;ROH;Display;140.0;1;EA
+DISP-15;Display Module 15.6in;ROH;Display;210.0;1;EA
+HSG-HU12;Housing Head Unit 12;ROH;Mechanics;22.0;1;EA
+HSG-HU15;Housing Head Unit 15;ROH;Mechanics;28.0;1;EA
+HSG-DCU;Housing DCU (die-cast);ROH;Mechanics;30.0;1;EA
+HARN-DCU;Harness DCU;ROH;Mechanics;12.0;1;EA
+HSG-AMP;Housing Amplifier;ROH;Mechanics;14.0;1;EA
+HEATSINK;Heatsink Amplifier;ROH;Mechanics;6.0;1;EA
+HSG-TCU;Housing TCU;ROH;Mechanics;6.0;1;EA
+ANT-5G;5G Antenna Assembly;ROH;Mechanics;5.0;1;EA

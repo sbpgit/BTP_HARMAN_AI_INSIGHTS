@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd /home/user/projects/HX_IBP_PoC_Package && cat btp-planning-explainer/srv/lib/repo.js; echo ----; cat dataset/30_S4_IBP_Mapping.csv; echo ----; grep -n -A30 '\"ibp\"' btp-planning-explainer/package.json)",
+      "Read(//home/user/projects/HX_IBP_PoC_Package/**)",
+      "Bash(npx cds *)",
+      "Bash(npm ls *)",
+      "Bash(awk '{print $2}')",
+      "Bash(grep -v -E \"\\(_VI|Trans|Message\\)$\")",
+      "Bash(grep -E \"PRODUCT$|LOCATION$|CUSTOMER$|RESOURCE|SOURCEPRODUCTION$|SOURCEITEM$|SOURCELOCATION$|SOURCERESOURCE$|SUPPLIER\")",
+      "Bash(awk '/^  entity SDSOURCEPRODUCTION \\\\{/,/^  \\\\};?$/' srv/external/IBPMasterDataAPI.cds)"
+    ]
+  }
+}

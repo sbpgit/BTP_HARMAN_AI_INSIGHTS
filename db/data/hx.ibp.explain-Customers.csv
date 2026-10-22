@@ -1,0 +1,4 @@
+ID;name;region;priority;s4_business_partner
+OEM_B;US Premium OEM (line-down penalty contract);NA;1;1000101
+OEM_A;German Premium OEM;EU;2;1000102
+OEM_C;China EV OEM (new program ramp);APAC;3;1000103

@@ -1,0 +1,93 @@
+_schema-version: '3.1'
+ID: hx-ibp-planning-explainer
+version: 0.1.0
+description: Explainability for SAP IBP supply planning (pegging, shortages, capacity) on SAP BTP
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+
+modules:
+  # CAP service (Node.js)
+  - name: hx-explainer-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 512M
+      disk-quota: 1024M
+    properties:
+      AI_MODEL: gpt-4o                 # any chat model deployed in your Generative AI Hub
+      AI_RESOURCE_GROUP: default
+      SHIFT_HOURS: 22.5
+      AIR_FREIGHT_WEEKS: 1
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: hx-explainer-db
+      - name: hx-explainer-uaa
+      - name: hx-explainer-destination
+      - name: hx-explainer-connectivity
+      - name: hx-explainer-aicore
+
+  # HDI deployer (HANA Cloud schema + seed data for the PoC)
+  - name: hx-explainer-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: hx-explainer-db
+
+  # Application router serving the planner UI with XSUAA login
+  - name: hx-explainer-approuter
+    type: approuter.nodejs
+    path: app/router
+    parameters:
+      memory: 256M
+      keep-existing-routes: true
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api
+          url: ~{srv-url}
+          forwardAuthToken: true
+      - name: hx-explainer-uaa
+
+resources:
+  - name: hx-explainer-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: hx-explainer-uaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: hx-ibp-explainer-${org}-${space}
+        tenant-mode: dedicated
+  - name: hx-explainer-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+  - name: hx-explainer-connectivity          # only needed if IBP/S4 is reached via Cloud Connector
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: connectivity
+      service-plan: lite
+  - name: hx-explainer-aicore                # SAP AI Core (Generative AI Hub / orchestration)
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: aicore
+      service-plan: extended

@@ -1,0 +1,8 @@
+ID;location_type;name;country;s4_plant
+PL_MX01;PLANT;Queretaro Head-Unit Final Assembly;MX;1010
+PL_HU01;PLANT;Hungary Amplifier & Domain-Controller Plant;HU;1020
+PL_CN01;PLANT;Suzhou SMT & Compute-Module Center;CN;1030
+PL_IN01;PLANT;Pune Telematics Plant;IN;1040
+DC_US01;DC;Detroit OEM Logistics Center;US;1110
+DC_DE01;DC;Stuttgart OEM Logistics Center;DE;1120
+DC_CN01;DC;Shanghai OEM Logistics Center;CN;1130

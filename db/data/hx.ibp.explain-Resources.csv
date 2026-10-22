@@ -1,0 +1,8 @@
+ID;location;description;category;hours_per_week
+RES_CN01_SMT1;PL_CN01;SMT Line 1 - main boards;SMT;170.0
+RES_CN01_SOM;PL_CN01;Compute-module SiP/SMT line;SMT;135.0
+RES_MX01_FA1;PL_MX01;Head-unit final assembly & EOL test;ASSEMBLY;160.0
+RES_HU01_SMT;PL_HU01;SMT Line amplifier boards;SMT;100.0
+RES_HU01_FA;PL_HU01;Final assembly DCU & amplifier;ASSEMBLY;150.0
+RES_IN01_SMT;PL_IN01;SMT line TCU board & 5G module;SMT;120.0
+RES_IN01_FA;PL_IN01;TCU final assembly & RF test;ASSEMBLY;90.0

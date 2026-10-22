@@ -1,0 +1,98 @@
+{
+  "name": "hx-ibp-planning-explainer",
+  "version": "0.1.0",
+  "description": "Explainability for SAP IBP supply planning runs (pegging, shortages, capacity) on SAP BTP CAP + SAP AI Core",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@cap-js/hana": "^3",
+    "@sap-ai-sdk/orchestration": "^2",
+    "@sap-cloud-sdk/connectivity": "^4",
+    "@sap-cloud-sdk/http-client": "^4.9.1",
+    "@sap-cloud-sdk/resilience": "^4.9.1",
+    "@sap/cds": "^10",
+    "@sap/xssec": "^4",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/cds-test": "^1",
+    "@cap-js/sqlite": "^3"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch": "cds watch",
+    "test": "node --test test/*.test.js"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "[development]": {
+          "kind": "sqlite",
+          "credentials": {
+            "url": ":memory:"
+          }
+        },
+        "[production]": {
+          "kind": "hana"
+        }
+      },
+      "auth": {
+        "[development]": {
+          "kind": "dummy"
+        },
+        "[production]": {
+          "kind": "xsuaa"
+        }
+      },
+      "ibp": {
+        "destination": "IBP",
+        "planningArea": "SAPIBP1",
+        "servicePath": "/sap/opu/odata/IBP/PLANNING_DATA_API_SRV",
+        "planStart": "2026-10-12",
+        "mapping": {
+          "entitySet": "SAPIBP1",
+          "product": "PRDID",
+          "location": "LOCID",
+          "resourceId": "RESID",
+          "period": "PERIODID3_TSTAMP",
+          "version": "VERSIONID",
+          "component": {
+            "requirement": "DEPENDENTDEMAND",
+            "supply": "TOTALRECEIPTS",
+            "projectedStock": "PROJECTEDINVENTORY"
+          },
+          "resource": {
+            "capacity": "CAPASUPPLY",
+            "load": "CAPACONSUMPTION",
+            "unconstrainedLoad": "UNCONSTRAINEDCAPACONSUMPTION"
+          },
+          "_note": "Key figure / attribute IDs are placeholders - align with your planning area (Configuration app) before go-live"
+        }
+      },
+      "IBPMasterDataAPI": {
+        "kind": "odata-v2",
+        "model": "srv/external/IBPMasterDataAPI",
+        "[development]": {
+          "credentials": {
+            "url": "https://my308633-api.scmibp1.ondemand.com/sap/opu/odata/IBP/MASTER_DATA_API_SRV",
+            "authentication": "BasicAuthentication",
+            "username": "BTPUSER",
+            "password": "Sbp@btpproductdevelopment01"
+          }
+        },
+        "[production]": {
+          "credentials": {
+            "destination": "IBPExternal",
+            "path": "/sap/opu/odata/IBP/MASTER_DATA_API_SRV"
+          }
+        }
+      }
+    },
+    "sql": {
+      "native_hana_associations": false
+    }
+  }
+}

@@ -1,0 +1,6 @@
+ID;name;description
+BASE;Baseline;Consensus/OEM call-offs as received, confirmed supplier POs, nominal capacity.
+S1_SOC_ALLOC;SoC supplier allocation;"SUP_SEMI1 allocates 45% of confirmed SOC-A78 quantities for weeks 3-12; PO due week 4 slips to week 9. SOC-A78 is a level-3 component pegged to HU-IVI-12, HU-IVI-15 and DCU-CKPT."
+S2_SMT_OUTAGE;SMT line outage Suzhou;RES_CN01_SMT1 runs at 40% capacity in weeks 3-6 (reflow oven failure). Impacts PCBA-HU-MAIN and PCBA-DCU.
+S3_EV_SURGE;China EV demand surge;OEM_C call-offs for HU-IVI-15 and TCU-5G +50% from week 6 (EV program over-take).
+S4_COMBINED;Combined stress test;S1 + S2 + S3 at the same time.

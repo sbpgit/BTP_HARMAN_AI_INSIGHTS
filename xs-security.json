@@ -1,0 +1,15 @@
+{
+  "scopes": [
+    { "name": "$XSAPPNAME.Planner", "description": "Read plans and request explanations" },
+    { "name": "$XSAPPNAME.PlanningAdmin", "description": "Ingest / sync planning runs from IBP" }
+  ],
+  "role-templates": [
+    { "name": "Planner", "scope-references": ["$XSAPPNAME.Planner"] },
+    { "name": "PlanningAdmin", "scope-references": ["$XSAPPNAME.Planner", "$XSAPPNAME.PlanningAdmin"] }
+  ],
+  "role-collections": [
+    { "name": "HX_IBP_Explainer_Planner", "role-template-references": ["$XSAPPNAME.Planner"] },
+    { "name": "HX_IBP_Explainer_Admin", "role-template-references": ["$XSAPPNAME.PlanningAdmin"] }
+  ],
+  "oauth2-configuration": { "redirect-uris": ["https://*.hana.ondemand.com/**"] }
+}
